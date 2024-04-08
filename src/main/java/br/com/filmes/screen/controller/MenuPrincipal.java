@@ -25,7 +25,6 @@ public class MenuPrincipal {
         System.out.println("Fazendo chamada para: "+ ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
         var json = filmesSeriesApi.enderecoApi(ENDERECO + nomeSerie.replace(" ", "+") + API_KEY);
         System.out.println(converteDados.obterDados(json, DadosSerie.class));
-        System.out.println(converteDados.obterDados(json, DadosEpisodio.class));
         listaTemporadas(converteDados.obterDados(json, DadosSerie.class), nomeSerie);
         //var coffee = filmesSeriesApi.enderecoApi("https://coffee.alexflipnote.dev/random.json");
         //System.out.println(coffee);
@@ -38,6 +37,6 @@ public class MenuPrincipal {
             DadosTemporada dadosTemporada = converteDados.obterDados(json, DadosTemporada.class);
             temporadas.add(dadosTemporada);
         }
-        temporadas.forEach(System.out::println);
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
     }
 }
