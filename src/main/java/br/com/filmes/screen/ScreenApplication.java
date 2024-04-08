@@ -1,13 +1,18 @@
 package br.com.filmes.screen;
 
-import br.com.filmes.screen.controller.api.FilmesApi;
+import br.com.filmes.screen.controller.MenuPrincipal;
+import br.com.filmes.screen.controller.api.FilmesSeriesApi;
+import br.com.filmes.screen.controller.dto.DadosEpisodio;
 import br.com.filmes.screen.controller.dto.DadosSerie;
+import br.com.filmes.screen.controller.dto.DadosTemporada;
 import br.com.filmes.screen.controller.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.SplittableRandom;
 
 @SpringBootApplication
 public class ScreenApplication implements CommandLineRunner {
@@ -19,21 +24,13 @@ public class ScreenApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Api de filmes!");
-		var filmesApi = new FilmesApi();
-		filmesApi.setKeyApi("8182dd71");
-        filmesApi.setNomeFilme("Gilmore Girls");
-		ConverteDados converteDados = new ConverteDados();
 
-		var json  = filmesApi.enderecoApi("https://www.omdbapi.com/?t=" +
-				                                             filmesApi.getNomeFilme().replace(" ", "+") +
-				    										"&apikey=" + filmesApi.getKeyApi() );
-		System.out.println(json);
-		DadosSerie dadosSerie = converteDados.obterDados(json, DadosSerie.class);
-		var coffee = filmesApi.enderecoApi("https://coffee.alexflipnote.dev/random.json");
+		String busca = "";
+		MenuPrincipal menuPrincipal  = new  MenuPrincipal();
+		while (!busca.equalsIgnoreCase("sair")){
+			 busca = menuPrincipal.exibMenu();
+			if (busca.equalsIgnoreCase("sair")) break;
 
-		System.out.println(dadosSerie);
-		System.out.println(coffee);
-
-
+		}
 	}
 }

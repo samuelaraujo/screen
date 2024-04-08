@@ -6,10 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class FilmesApi {
-
-    private String keyApi;
-    private String nomeFilme;
+public class FilmesSeriesApi {
 
     public String enderecoApi(String endereco) {
 
@@ -29,19 +26,4 @@ public class FilmesApi {
         return response.body();
     }
 
-    public String getKeyApi() {
-        return keyApi;
-    }
-
-    public void setKeyApi(String keyApi) {
-        this.keyApi = keyApi;
-    }
-
-    public String getNomeFilme() {
-        return nomeFilme;
-    }
-
-    public void setNomeFilme(String nomeFilme) {
-        this.nomeFilme = nomeFilme;
-    }
 }
